@@ -1,24 +1,88 @@
-#define _USE_MATH_DEFINES // for C
-#include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <float.h>
+#include <stdbool.h>
+#include <math.h>
 
 /**
- * @brief Точка входа в программу
- * @return Возвращает 0, если программа выполнена корректно
+ * @brief считывает значение,
+ * введенное с клавиатуры с проверкой ввода
+ * @return считанное значение
  */
+double getValue();
+
+/**
+ * @brief проверяет,что переменная положительная
+ * @param step значение проверяемой переменной
+ */
+void checkStep(const double step);
+
+/**
+ * @brief проверяет, принадлежит ли значение аргумента функции
+ * её области определения
+ * @param x - аргумент функции
+ * @return true, если аргумент принадлежит ООФ, иначе false
+ */
+bool defineOOF(const double x);
+
+/**
+ * @brief рассчитывает значение функции y по заданной формуле
+ * @param x значение
+ * @return
+ */
+double getY(const double x);
+
+
 int main()
 {
-    const double min_x = 0.4;
-    const double max_x = 1;
-    const double step_x = 0.05;
-
-    printf("x           f(x)\n");
-    for (double x = min_x; x < max_x; x += step_x)
+   
+    printf("Введите начальное значение: ");
+    double start = getValue();
+    printf("Введите конечное значение: ");
+    double end = getValue();
+    printf("Введите шаг: ");
+    double step = getValue();
+    checkStep(step);
+    for (double x = start; x < end + DBL_EPSILON; x = x + step)
     {
-        const double result = x + pow(x, 0.5) + pow(x, 1.0 / 3) - 2.5;
-        printf("%.2lf       ", x);
-        printf("%.2lf\n", result);
+        if (defineOOF(x))
+        {
+            printf("x = %.2lf, y = %.4lf\n", x, getY(x));
+        }
+        else
+        {
+            printf("x = %.2lf, не принадлежит ООФ\n", x);
+        }
     }
-
     return 0;
+}
+
+double getValue()
+{
+    double value = 0;
+    if (!scanf("%lf", &value))
+    {
+        printf("Error\n");
+        abort();
+    }
+    return value;
+}
+
+void checkStep(const double step)
+{
+    if (step <= DBL_EPSILON)
+    {
+        printf("Ошибка, шаг должен быть положительным\n");
+        abort();
+    }
+}
+
+bool defineOOF(const double x)
+{
+    return x > 0;
+}
+
+double getY(const double x)
+{
+    return x + pow(x, 1.0/2) + pow(x, 1.0/3) - 2.5;
 }
