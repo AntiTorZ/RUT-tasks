@@ -9,7 +9,7 @@
  * @param R3 сопротивление резистора 3
  * @return возвращает сопротивление соединения
  */
-double getResistance(double R1, double R2, double R3);
+double getResistance(const double R1, const double R2, const double R3);
 
 /**
  * @brief Точка входа в программу
@@ -35,7 +35,7 @@ int main(void)
     return 0;
 }
 
-double getResistance(double R1, double R2, double R3)
+double getResistance(const double R1, const double R2, const double R3)
 {
     return (R1 * R2 * R3) / (R1 * R2 + R2 * R3 + R1 * R3);
 }
