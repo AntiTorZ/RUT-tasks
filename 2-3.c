@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <locale.h>
 
 /**
  * @brief считывает значение,
@@ -10,10 +11,11 @@
 double getValue();
 
 /**
- * @brief проверяет,что переменная положительная
- * @param value значение проверяемой переменной
+ * @brief проверяет, что переменная отрицательная или положительная
+ * и возводит её в степень
+ * @param value значение переменной
  */
-void checkValue(const double value);
+double transformValue(const double value);
 
 /**
  * @brief Точка входа в программу
@@ -21,19 +23,29 @@ void checkValue(const double value);
  */
 int main(void)
 {
+
+    double modNumber1;
+    double modNumber2;
+    double modNumber3;
+
+    setlocale(LC_ALL, "Russian");
+
     printf("Введите число 1: ");
     double number1 = getValue();
-    checkValue(number1);
+
     printf("Введите число 2: ");
     double number2 = getValue();
-    checkValue(number2);
+
     printf("Введите число 3: ");
     double number3 = getValue();
-    checkValue(number3);
-    
-    printf("1 число равно %.2lf\n", number1);
-    printf("2 число равно %.2lf\n", number2);
-    printf("3 число равно %.2lf\n", number3);
+
+    modNumber1 = transformValue(number1);
+    modNumber2 = transformValue(number2);
+    modNumber3 = transformValue(number3);
+
+    printf("Число 1 равно % .2lf\n", modNumber1);
+    printf("Число 2 равно %.2lf\n", modNumber2);
+    printf("Число 3 равно %.2lf\n", modNumber3);
 
     return 0;
 }
@@ -41,27 +53,23 @@ int main(void)
 double getValue()
 {
     double value = 0;
-    if (!scanf("%lf",&value))
+    if (!scanf_s("%lf", &value))
     {
         printf("Error\n");
         abort();
     }
-    if (value >= 0)
-    {
-        value = pow(value, 2);
-    }
-    else
-    {
-        value = pow(value, 4);
-    }
+
     return value;
 }
 
-void checkValue(const double value)
+double transformValue(const double value)
 {
-    if (value <= 0 )
+    if (value >= 0)
     {
-        printf("Value have to be positive\n");
-        abort();
+        return pow(value, 2);
+    }
+    else
+    {
+        return pow(value, 4);
     }
 }
