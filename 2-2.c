@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <locale.h>
 
 /**
  * @brief рассчитывает значение функции
@@ -8,7 +9,15 @@
  * @param x значение переменной x
  * @return возвращает значение функции
  */
-double getFunc(const double a, const double x);
+double func1(const double a, const double x);
+
+/**
+ * @brief рассчитывает значение функции
+ * @param a значение переменной a
+ * @param x значение переменной x
+ * @return возвращает значение функции
+ */
+double func2(const double a, const double x);
 
 /**
  * @brief считывает значение,
@@ -18,53 +27,47 @@ double getFunc(const double a, const double x);
 double getValue();
 
 /**
- * @brief проверяет,что переменная положительная
- * @param value значение проверяемой переменной
- */
-void checkValue(const double a, const double x);
-
-/**
  * @brief Точка входа в программу
  * @return возвращает 0, если программма выполнена корректно
  */
 int main(void)
 {
-    printf("Введите значение переменной a: ");
-    double a = getValue();
-    printf("Введите значение переменной x больше 1.2: ");
+    setlocale(LC_ALL, "Russian");
+
+    const double a = 2.8;
+
+    printf("Введите значение переменной x: ");
     double x = getValue();
-    checkValue(a, x);
-    printf("Значение функции y равно %.2lf\n",getFunc(a, x));
+
+    if (x < 1.2)
+    {
+        printf("Значение функции равно %.2lf\n", func1(a, x));
+    }
+    else
+    {
+        printf("Значение функции равно %.2lf\n", func2(a, x));
+    }
 
     return 0;
 }
 
-double getFunc(const double a, const double x)
+double func1(const double a, const double x)
 {
-    return a*pow(x,2) + 4;
+    return a * pow(x, 2) + 4;
+}
+
+double func2(const double a, const double x)
+{
+    return (a + 4 * x) * pow(pow(x, 2 * a), 0.5);
 }
 
 double getValue()
 {
     double value = 0;
-    if (!scanf("%lf",&value))
+    if (!scanf_s("%lf", &value))
     {
         printf("Error\n");
         abort();
     }
     return value;
-}
-
-void checkValue(const double a, const double x)
-{
-    if (x < 1.2 )
-    {
-        printf("Нет решений\n");
-        abort();
-    }
-    if (x >= 1.2 * (a + 4 * x))
-    {
-        printf("Нет решений\n");
-        abort();
-    }
 }
