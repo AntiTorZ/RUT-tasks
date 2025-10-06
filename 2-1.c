@@ -1,6 +1,8 @@
+#define _USE_MATH_DEFINES
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <locale.h>
 
 /**
  * @brief рассчитывает площадь трапеции
@@ -38,20 +40,24 @@ void checkValue(const double value);
  */
 int main(void)
 {
+    setlocale(LC_ALL, "Russian");
+
     printf("Введите сторону 1 трапеции: ");
     double side1 = getValue();
     checkValue(side1);
+
     printf("Введите сторону 2 трапеции: ");
     double side2 = getValue();
     checkValue(side2);
+
     printf("Введите высоту трапеции: ");
     double height = getValue();
     checkValue(height);
-    
+
     printf("Введите радиус круга: ");
     double radius = getValue();
     checkValue(radius);
-    
+
     printf("Площадь трапеции равна %.2lf\n", getS_Trapezoid(side1, side2, height));
     printf("Площадь круга равна %.2lf\n", getS_Circle(radius));
 
@@ -71,7 +77,7 @@ double getS_Circle(const double radius)
 double getValue()
 {
     double value = 0;
-    if (!scanf("%lf",&value))
+    if (!scanf_s("%lf", &value))
     {
         printf("Error\n");
         abort();
@@ -81,7 +87,7 @@ double getValue()
 
 void checkValue(const double value)
 {
-    if (value <= 0 )
+    if (value <= 0)
     {
         printf("Value have to be positive\n");
         abort();
