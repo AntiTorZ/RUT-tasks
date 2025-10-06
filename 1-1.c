@@ -1,4 +1,3 @@
-#define _USE_MATH_DEFINES // for C
 #include <math.h>
 #include <stdio.h>
 
@@ -29,17 +28,17 @@ int main()
     const double x = 1.852;
     const double y = 18.225;
     const double z = -3.298;
-    printf("A = %lf", getA(x, y, z));
+    printf("A = %lf\n", getA(x, y, z));
     printf("B = %lf", getB(x, y, z));
     return 0;
 }
 
 double getB(const double x, const double y, const double z)
 {
-    return (y-x) + ((y-z)/(y-x))/(3 + pow(z,2)/5);
+    return (y - x) + ((y - z) / (y - x)) / (3 + pow(z, 2) / 5);
 }
 
 double getA(const double x, const double y, const double z)
 {
-    return pow(x, y/x) - pow(y/x, 1/3);
+    return pow(x, y / x) - pow(y / x, 1.0 / 3);
 }
