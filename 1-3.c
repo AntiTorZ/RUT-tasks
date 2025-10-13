@@ -19,9 +19,9 @@ int main(void)
 {
     setlocale(LC_ALL, "Russian");
 
-    double R1;
-    double R2;
-    double R3;
+    double R1 = 0;
+    double R2 = 0;
+    double R3 = 0;
 
     printf("Введите сопротивление резистора 1: ");
     scanf_s("%lf", &R1);
