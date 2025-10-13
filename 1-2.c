@@ -25,7 +25,7 @@ int main(void)
 {
     setlocale(LC_ALL, "Russian");
 
-    double R;
+    double R = 0;
     printf("Введите радиус шара: ");
     scanf_s("%lf", &R);
 
