@@ -3,6 +3,7 @@
 #include <float.h>
 #include <stdbool.h>
 #include <math.h>
+#include <locale.h>
 
 /**
  * @brief считывает значение,
@@ -35,15 +36,18 @@ double getY(const double x);
 
 int main()
 {
-   
+    setlocale(LC_ALL, "Russian");
+
     printf("Введите начальное значение: ");
     double start = getValue();
     printf("Введите конечное значение: ");
     double end = getValue();
+
     printf("Введите шаг: ");
     double step = getValue();
     checkStep(step);
-    for (double x = start; x < end + DBL_EPSILON; x = x + step)
+
+    for (double x = start; x < end + DBL_EPSILON + step; x = x + step)
     {
         if (defineOOF(x))
         {
@@ -60,7 +64,7 @@ int main()
 double getValue()
 {
     double value = 0;
-    if (!scanf("%lf", &value))
+    if (!scanf_s("%lf", &value))
     {
         printf("Error\n");
         abort();
@@ -79,10 +83,10 @@ void checkStep(const double step)
 
 bool defineOOF(const double x)
 {
-    return x >= 0;
+    return x >= DBL_EPSILON;
 }
 
 double getY(const double x)
 {
-    return x + pow(x, 1.0/2) + pow(x, 1.0/3) - 2.5;
+    return x + pow(x, 1.0 / 2) + pow(x, 1.0 / 3) - 2.5;
 }
