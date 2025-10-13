@@ -24,9 +24,9 @@ double transformValue(const double value);
 int main(void)
 {
 
-    double modNumber1;
-    double modNumber2;
-    double modNumber3;
+    double modNumber1 = 0;
+    double modNumber2 = 0;
+    double modNumber3 = 0;
 
     setlocale(LC_ALL, "Russian");
 
