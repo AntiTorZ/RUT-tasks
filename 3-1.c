@@ -47,7 +47,7 @@ int main()
     double step = getValue();
     checkStep(step);
 
-    for (double x = start; x < end + DBL_EPSILON + step; x = x + step)
+    for (double x = start; x < end + step; x = x + step)
     {
         if (defineOOF(x))
         {
@@ -83,7 +83,7 @@ void checkStep(const double step)
 
 bool defineOOF(const double x)
 {
-    return x >= DBL_EPSILON;
+    return x >= -DBL_EPSILON;
 }
 
 double getY(const double x)
