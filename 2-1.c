@@ -11,15 +11,15 @@
  * @param height высота трапеции
  * @return возвращает рассчитанную площадь
  */
-double getS_Trapezoid(const double side1, const double side2, const double height);
+double defS_Trapezoid(const double side1, const double side2, const double height);
 
 
 /**
- * @brief рассчитывает площадь круга
- * @param radius радиус круга
+ * @brief рассчитывает площадь окружности
+ * @param radius радиус окружности
  * @return возвращает рассчитанную площадь
  */
-double getS_Circle(const double radius);
+double defS_Circle(const double radius);
 
 /**
  * @brief считывает значение,
@@ -35,41 +35,62 @@ double getValue();
 void checkValue(const double value);
 
 /**
+@brief S_Trapezoid - первое вычисление
+@brief S_Circle - второе вычисление
+*/
+enum { S_Trapezoid, S_Circle };
+
+/**
  * @brief Точка входа в программу
  * @return возвращает 0, если программма выполнена корректно
  */
 int main(void)
 {
-    setlocale(LC_ALL, "Russian");
+    system("chcp 1251");
 
-    printf("Введите сторону 1 трапеции: ");
-    double side1 = getValue();
-    checkValue(side1);
+    printf("Выберите требуемое вычисление: %d - площадь трапеции, %d - площадь окружности: ", S_Trapezoid, S_Circle);
+    int choise = getValue();
 
-    printf("Введите сторону 2 трапеции: ");
-    double side2 = getValue();
-    checkValue(side2);
+    switch (choise)
+    {
+    case S_Trapezoid:
+        printf("Введите сторону 1 трапеции: ");
+        double side1 = getValue();
+        checkValue(side1);
 
-    printf("Введите высоту трапеции: ");
-    double height = getValue();
-    checkValue(height);
+        printf("Введите сторону 2 трапеции: ");
+        double side2 = getValue();
+        checkValue(side2);
 
-    printf("Введите радиус круга: ");
-    double radius = getValue();
-    checkValue(radius);
+        printf("Введите высоту трапеции: ");
+        double height = getValue();
+        checkValue(height);
 
-    printf("Площадь трапеции равна %.2lf\n", getS_Trapezoid(side1, side2, height));
-    printf("Площадь круга равна %.2lf\n", getS_Circle(radius));
+        printf("Площадь трапеции равна %.2lf\n", defS_Trapezoid(side1, side2, height));
+        break;
+
+    case S_Circle:
+        printf("Введите радиус круга: ");
+        double radius = getValue();
+        checkValue(radius);
+
+        printf("Площадь круга равна %.2lf\n", defS_Circle(radius));
+        break;
+
+    default:
+        printf("Error");
+        abort();
+    }
 
     return 0;
 }
 
-double getS_Trapezoid(const double side1, const double side2, const double height)
+double defS_Trapezoid(const double side1, const double side2, const double height)
 {
     return 0.5 * (side1 + side2) * height;
 }
 
-double getS_Circle(const double radius)
+double defS_Circle(const double radius)
 {
     return M_PI * pow(radius, 2);
 }
