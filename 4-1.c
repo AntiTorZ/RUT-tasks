@@ -321,9 +321,6 @@ int defFIRST(const int* arr, const size_t size)
 
 void defForTask3(int* arr, const size_t size)
 {
-	check_pointer(arr);
-
-	// Создаем новый массив для хранения результатов с плавающей точкой
 	float* result = malloc(size * sizeof(float));
 	for (size_t i = 0; i < size; i++)
 	{
