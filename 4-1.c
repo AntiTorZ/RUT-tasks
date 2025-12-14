@@ -34,7 +34,7 @@ int defForTask1(const int* arr, const size_t size);
 * @param arr - массив
 * @param size - размер массива
 */
-void defForTask2(const int* arr, const size_t size);
+int defForTask2(const int* arr, const size_t size);
 
 /**
 * @brief Создаёт новый массив согласно условию №3
@@ -161,10 +161,11 @@ int main(void)
 		break;
 
 	case TASK_TWO:
-		defForTask2(copyA, size);
+		printf("\nКол-во элементов кратных 5 и больше A = %d\n", defForTask2(copyA, size));
 		break;
 
 	case TASK_THREE:
+		printf("\nНовый массив: \n");
 		defForTask3(copyA, size);
 		break;
 
@@ -271,26 +272,21 @@ int defForTask1(const int* arr, const size_t size)
 	return summ;
 }
 
-void defForTask2(const int* arr, const size_t size)
+int defForTask2(const int* arr, const size_t size)
 {
 	check_pointer(arr);
 	int count = 0;
 	printf("\nВведите число A: ");
 	const int A = getValid();
 
-	printf("\nКол-во элементов кратных 5 и больше A: ");
 	for (size_t i = 0; i < size; i++)
 	{
 		if ((arr[i] % 5 == 0) && (arr[i] > A))
 		{
-			printf("%lf ", count);
 			count++;
 		}
 	}
-	if (count == 0)
-	{
-		printf("\nТаких элементов в массиве нету");
-	}
+	return count;
 }
 
 int* defcopyArr(const int* arr, const size_t size)
@@ -322,6 +318,7 @@ int defFIRST(const int* arr, const size_t size)
 void defForTask3(int* arr, const size_t size)
 {
 	float* result = malloc(size * sizeof(float));
+	check_pointer(result);
 	for (size_t i = 0; i < size; i++)
 	{
 		result[i] = (float)arr[i];
@@ -329,7 +326,6 @@ void defForTask3(int* arr, const size_t size)
 
 	const int def_first = defFIRST(arr, size);
 
-	printf("\nНовый массив: \n");
 	for (size_t i = 0; i < size; i++)
 	{
 		if (i % 2 == 0)
@@ -339,7 +335,6 @@ void defForTask3(int* arr, const size_t size)
 
 		printf("%.2f\n", result[i]);
 	}
-
 
 }
 
