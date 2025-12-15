@@ -30,7 +30,7 @@ void checkValue(const int input, const int min, const int max);
 void defForTask1(int* arr, const size_t size);
 
 /**
-* @brief Находит индексы согласно условию 2
+* @brief Создаёт новый массив согласно условию 2
 * @param arr - массив
 * @param size - размер массива
 */
