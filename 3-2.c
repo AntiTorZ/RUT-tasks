@@ -74,7 +74,7 @@ double SumN(const int n)
 {
     double current = 1.0;
     double result = current;
-    for (int i = 0; i < n - 1; i++)
+    for (int i = 0; i < n; i++)
     {
         current *= Recurent(i);
         result += current;
