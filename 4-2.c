@@ -177,7 +177,6 @@ int main(void)
 		break;
 
 	case TASK_TWO:
-		//printf("%d", findFirstEVEN(12));
 		defForTask2(copyA, size);
 		break;
 
