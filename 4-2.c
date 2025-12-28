@@ -27,7 +27,7 @@ void checkValue(const int input, const int min, const int max);
 * @param arr - массив
 * @param size - размер массива
 */
-void defForTask1(int* arr, const size_t size);
+void defForTask1(const int* arr, const size_t size);
 
 /**
 * @brief Создаёт новый массив согласно условию 2
@@ -303,7 +303,7 @@ void defForTask2(const int* arr, const size_t size)
 	{
 		if (j < newsize)
 		{
-			if (findFirstEVEN(arr[i]) == 0)
+			if (!findFirstEVEN(arr[i]) )
 			{
 				newarr[j++] = arr[i];
 			}
@@ -370,7 +370,7 @@ int* defcopyArr(const int* arr, const size_t size)
 	return copyArr;
 }
 
-bool findFirstEVEN(int input)
+bool findFirstEVEN(const int input);
 {
 	input = abs(input);
 
